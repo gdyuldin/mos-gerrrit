@@ -1,0 +1,38 @@
+gerrit:
+  build: .
+  ports:
+    - 8000:8080
+    - 29418:29418
+  environment:
+    - WEBURL=http://172.17.0.1:8000/
+    # - WEBURL=http://cz7776.bud.mirantis.net:8000/
+    - DATABASE_TYPE=postgresql
+    - SMTP_SERVER=postfix
+    - SMTP_SERVER_PORT=25
+    - SMTP_USER=user
+    - SMTP_PASS=pwd
+    - SMTP_CONNECT_TIMEOUT=10sec
+    - SMTP_FROM=review@gerrit.mirantis.net
+  links:
+    - db
+    - postfix
+  volumes:
+    - ./site:/var/gerrit/review_site
+    - ./github_key/id_rsa:/var/gerrit/.ssh/id_rsa
+
+db:
+  image: postgres
+  ports:
+   - 127.0.0.1:15432:5432
+  environment:
+    - POSTGRES_USER=gerrit2
+    - POSTGRES_PASSWORD=gerrit
+    - POSTGRES_DB=reviewdb
+  volumes:
+    - ./dbdata:/var/lib/postgresql/data
+
+postfix:
+  image: catatnight/postfix
+  environment:
+    - maildomain=gerrit.mirantis.net
+    - smtp_user=user:pwd

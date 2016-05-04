@@ -1,0 +1,5 @@
+Host github.com
+  User git
+  IdentityFile /var/gerrit/.ssh/id_rsa
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
