@@ -1,5 +1,5 @@
 - project:
-    name: mos-integration-tests
+    name: mos-ci-scripts-tests
     jobs:
       - 'check-{name}'
 
@@ -10,10 +10,10 @@
       - axis:
           type: tox
           values:
-            - py27-static_check
-            - py34-static_check
-            - doc_check
-            - testrail_id_check
+            - maintance
+            - product-9.0
+            - product-9.1
+            - product-10.0
     wrappers:
       - ansicolor
     builders:
@@ -21,7 +21,7 @@
 
     scm:
       - git:
-          url: https://review.gerrithub.io/Mirantis/mos-integration-tests
+          url: https://review.gerrithub.io/Mirantis/mos-ci-deployment-scripts
           branches:
               - $GERRIT_BRANCH
           refspec: $GERRIT_REFSPEC
@@ -39,10 +39,10 @@
                 comment-contains-value: 'recheck'
           projects:
             - project-compare-type: 'PLAIN'
-              project-pattern: 'Mirantis/mos-integration-tests'
+              project-pattern: 'Mirantis/mos-ci-deployment-scripts'
               branches:
-                - branch-compare-type: 'ANT'
-                  branch-pattern: '**'
+                - branch-compare-type: 'PLAIN'
+                  branch-pattern: 'master'
                 # - branch-compare-type: 'PLAIN'
                 #   branch-pattern: 'stable/8.0'
               # file-paths:
