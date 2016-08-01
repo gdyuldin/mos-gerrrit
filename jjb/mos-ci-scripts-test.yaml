@@ -10,10 +10,8 @@
       - axis:
           type: tox
           values:
-            - maintance
+            - maintenance
             - product-9.0
-            - product-9.1
-            - product-10.0
     wrappers:
       - ansicolor
     builders:
