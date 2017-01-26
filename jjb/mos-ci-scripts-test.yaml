@@ -12,6 +12,9 @@
           values:
             - maintenance
             - product-9.0
+            - product-mk22
+            - system_jobs
+            - ironic-baremetal
     wrappers:
       - ansicolor
     builders:
