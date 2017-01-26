@@ -28,6 +28,9 @@
             tox_values:
               - py27-static_check
               - py34-static_check
+              - py27-steps-checker
+              - py27-unittests
+              - py27-idempotent-ids-checker
     jobs:
       - 'check-{group}'
 
@@ -38,6 +41,11 @@
       - axis:
           type: tox
           values: '{obj:tox_values}'
+      - axis:
+          type: slave
+          name: n
+          values:
+            - master
     wrappers:
       - ansicolor
     builders:
