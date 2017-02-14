@@ -31,6 +31,7 @@
               - py27-steps-checker
               - py27-unittests
               - py27-idempotent-ids-checker
+              - check-fixtures
     jobs:
       - 'check-{group}'
 
@@ -49,7 +50,8 @@
     wrappers:
       - ansicolor
     builders:
-      - tox: {}
+      - tox:
+          recreate: true
 
     scm:
       - git:
