@@ -11,7 +11,7 @@
           type: tox
           values:
             - maintenance
-            - product-9.0
+            - product-mos
             - product-mk22
             - system_jobs
             - ironic-baremetal
